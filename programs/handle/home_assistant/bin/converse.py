@@ -19,7 +19,6 @@ def main():
     )
     parser.add_argument("token_file", help="Path to file with authorization token")
     parser.add_argument("--language", help="Language code to use")
-    parser.add_argument("--agent_id", help="ID of conversation agent. The conversation agent is the brains of the assistant. It processes the incoming text commands")
     parser.add_argument(
         "--debug", action="store_true", help="Print DEBUG messages to console"
     )
@@ -32,8 +31,6 @@ def main():
     data_dict = {"text": sys.stdin.read()}
     if args.language:
         data_dict["language"] = args.language
-    if args.agent_id:
-        data_dict["agent_id"] = args.agent_id
 
     data = json.dumps(data_dict, ensure_ascii=False).encode("utf-8")
     request = Request(args.url, data=data, headers=headers)
